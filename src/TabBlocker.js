@@ -9,7 +9,6 @@ const TabBlocker = () => {
       event.returnValue = '';
 
       // Redirect back to your website
-      window.location.href = 'http://localhost:3000/'; // Change this to your desired URL
     };
 
     // Add event listener when component mounts

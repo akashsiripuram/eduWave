@@ -15,6 +15,7 @@ export default function Navbar() {
             <p>EduWave</p>
           </div>
         </Link>
+        
 
         <div className="mx-0 lg:mx-5">
           {loading ? (

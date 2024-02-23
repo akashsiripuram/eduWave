@@ -2,6 +2,7 @@ import "./App.css";
 import Navbar from "./components/shared/Navbar";
 import FullScreenMode from "./FullScreenMode.jsx";
 import TabBlocker from './TabBlocker';
+import Canvas from "./Canvas.js";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
       </div>
       <FullScreenMode />
       <TabBlocker />
+      
+      <Canvas />
     </>
   );
 }
