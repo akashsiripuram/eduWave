@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import "./canvas.css";
 
-
 export default function Canvas() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [color, setColor] = useState("#3B3B3B");
@@ -15,11 +14,11 @@ export default function Canvas() {
     const canvas = canvasRef.current;
     ctx.current = canvas.getContext("2d");
 
-    //Resizing
+    // Resizing
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
-    //Load from locastorage
+    // Load from localStorage
     const canvasimg = localStorage.getItem("canvasimg");
     if (canvasimg) {
       var image = new Image();
@@ -30,12 +29,12 @@ export default function Canvas() {
       };
       image.src = canvasimg;
     }
-
-  }, [ctx]);
+  }, []);
 
   const startPosition = ({ nativeEvent }) => {
     setIsDrawing(true);
-    draw(nativeEvent);
+    const { offsetX, offsetY } = getMousePosition(canvasRef.current, nativeEvent);
+    draw({ nativeEvent: { offsetX, offsetY } });
   };
 
   const finishedPosition = () => {
@@ -53,10 +52,11 @@ export default function Canvas() {
     ctx.current.lineCap = "round";
     ctx.current.strokeStyle = color;
 
-    ctx.current.lineTo(nativeEvent.clientX, nativeEvent.clientY);
+    const { offsetX, offsetY } = getMousePosition(canvas, nativeEvent);
+    ctx.current.lineTo(offsetX, offsetY);
     ctx.current.stroke();
     ctx.current.beginPath();
-    ctx.current.moveTo(nativeEvent.clientX, nativeEvent.clientY);
+    ctx.current.moveTo(offsetX, offsetY);
 
     if (timeout.current !== undefined) clearTimeout(timeout.current);
     timeout.current = setTimeout(function () {
@@ -72,7 +72,6 @@ export default function Canvas() {
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    //Passing clear screen
     if (timeout.current !== undefined) clearTimeout(timeout.current);
     timeout.current = setTimeout(function () {
       var base64ImageData = canvas.toDataURL("image/png");
@@ -90,63 +89,69 @@ export default function Canvas() {
     setCursor("grab");
     setSize("20");
     setColor("#FFFFFF");
+  };
 
-    if (!isDrawing) {
-      return;
-    }
+  // Function to get mouse position relative to canvas
+  const getMousePosition = (canvas, event) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return {
+      offsetX: (event.clientX - rect.left) * scaleX,
+      offsetY: (event.clientY - rect.top) * scaleY
+    };
   };
 
   return (
     <>
-    <div className="Container">
-    <h1>White Board</h1>
-      <div className="canvas-btn" >
-      <button onClick={getPen} className="btn-width">
-          Pencil
-        </button>
-        <div className="btn-width color">
-          <input
-            type="color"
-           
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
+      <div className="Container">
+        <h1>White Board</h1>
+        <div className="canvas-btn">
+          <button onClick={getPen} className="btn-width">
+            Pencil
+          </button>
+          <div className="btn-width color">
+            <input
+              type="color"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
+          <div>
+            <select
+              className="btn-width"
+              value={size}
+              onChange={(e) => setSize(e.target.value)}
+            >
+              <option>1</option>
+              <option>3</option>
+              <option>5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+              <option>25</option>
+              <option>30</option>
+            </select>
+          </div>
+          <button onClick={clearCanvas} className="btn-width">
+            Clear
+          </button>
+          <div>
+            <button onClick={eraseCanvas} className="btn-width">
+              Erase
+            </button>
+          </div>
+        </div>
+        <div className="canvas">
+          <canvas
+          className="w-full h-full"
+            style={{ cursor: cursor }}
+            onMouseDown={startPosition}
+            onMouseUp={finishedPosition}
+            onMouseMove={draw}
+            ref={canvasRef}
           />
         </div>
-        <div>
-          <select
-            className="btn-width"
-            value={size}
-            onChange={(e) => setSize(e.target.value)}
-          >
-            <option> 1 </option>
-            <option> 3 </option>
-            <option> 5 </option>
-            <option> 10 </option>
-            <option> 15 </option>
-            <option> 20 </option>
-            <option> 25 </option>
-            <option> 30 </option>
-          </select>
-        </div>
-        <button onClick={clearCanvas} className="btn-width">
-          Clear
-        </button>
-        <div>
-          <button onClick={eraseCanvas} className="btn-width">
-            Erase
-          </button>
-        </div>
-      </div>
-    <div className="canvas">
-      <canvas
-       style={{ cursor:cursor } }
-       
-        onMouseDown={startPosition}
-        onMouseUp={finishedPosition}
-        onMouseMove={draw}
-        ref={canvasRef}
-      />
-      </div>
       </div>
     </>
   );

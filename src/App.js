@@ -3,6 +3,7 @@ import Navbar from "./components/shared/Navbar";
 import FullScreenMode from "./FullScreenMode.jsx";
 import TabBlocker from './TabBlocker';
 import Canvas from "./Canvas.js";
+import ScreenTime from './ScreenTime.js';
 
 function App() {
   return (
@@ -16,7 +17,9 @@ function App() {
       <FullScreenMode />
       <TabBlocker />
       
-      <Canvas />
+      {/* <Canvas /> */}
+      <h1>My Website</h1>
+      <ScreenTime/>
     </>
   );
 }
