@@ -1,0 +1,28 @@
+body{
+    /* font: ; */
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input{
+    width: 250px;
+    height: 25px;
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+button{
+    width: 80px;
+    height: 35px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+
+}
