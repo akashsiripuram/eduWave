@@ -8,11 +8,33 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="py-5 flex items-center justify-between p-3 bg-gray-800">
+      <div className="py-5 text-red-400 flex items-center justify-between p-3 bg-gray-800">
         <Link to="/">
           <div className="flex items-center text-white">
             {/* <img src="/innerserenity.png" style={{ width: "12rem" }} /> */}
             <p>EduWave</p>
+          </div>
+        </Link>
+        <Link to="/videoconference">
+          <div className="flex items-center text-white">
+            <p>Video Conference</p>
+          </div>
+        </Link>
+        <Link to="/whiteboard">
+          <div className="flex items-center text-white">  
+            <p>WhiteBoard</p>
+          </div>
+        </Link>
+        <Link to="/screentime">
+          <div className="flex items-center text-white">
+  
+            <p>ScreenTime</p>
+          </div>
+        </Link>
+        <Link to="/chatai">
+          <div className="flex items-center text-white">
+  
+            <p>ChatAI</p>
           </div>
         </Link>
         

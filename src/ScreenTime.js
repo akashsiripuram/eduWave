@@ -82,6 +82,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react'; // Import Transition and Dialog
+import { Link, useNavigate } from "react-router-dom";
 
 function ScreenTime() {
   const [totalTime, setTotalTime] = useState(0);
@@ -170,6 +171,7 @@ function ScreenTime() {
                       leaveTo="opacity-0"
                     >
                       <div className="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
+                        <Link to="/">
                         <button
                           type="button"
                           className="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
@@ -178,7 +180,7 @@ function ScreenTime() {
                           <span className="absolute -inset-2.5" />
                           <span className="sr-only">Close panel</span>
                           <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                        </button>
+                        </button></Link>
                       </div>
                     </Transition.Child>
                     <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
