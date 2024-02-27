@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const Teacher = require("../models/TeacherModel");
+const Teacher = require("../models/Users");
 
 const createTeacher = async (req, res) => {
   try {
@@ -55,6 +55,8 @@ const loginTeacher = async (req, res) => {
       message: "Login successful",
       success: true,
       data: token,
+      userID:teacher._id
+      
     });
   } catch (error) {
     res.status(500).send({

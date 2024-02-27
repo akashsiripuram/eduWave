@@ -14,6 +14,11 @@ export default function Navbar() {
             <p>EduWave</p>
           </div>
         </Link>
+        <Link to="/chat">
+          <div className="flex items-center text-white">
+            <p>Chat</p>
+          </div>
+        </Link>
 
         <div className="mx-0 lg:mx-5 flex gap-4">
           <h1 className="text-white text-small">{teacher?.name}</h1>

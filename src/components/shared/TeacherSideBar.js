@@ -1,4 +1,5 @@
 import { useState } from "react";
+// import { useSelector } from "react-redux";
 import {
   HomeIcon,
   AcademicCapIcon,
@@ -14,7 +15,10 @@ import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 const TeacherSideBar = () => {
   const [open, setOpen] = useState(false);
+
   const location = useLocation();
+  
+  const userId = localStorage.getItem("userID");
   const Menus = [
     {
       title: "Dashboard",
@@ -24,7 +28,7 @@ const TeacherSideBar = () => {
     {
       title: "Inbox",
       src: <ChatBubbleBottomCenterIcon className="h-6 w-6 text-green-400" />,
-      url: "/dashboard/teacher/inbox",
+      url: `/dashboard/teacher/inbox/${userId}`,
     },
     {
       title: "Students",
@@ -59,6 +63,10 @@ const TeacherSideBar = () => {
     },
   ];
 
+  const [name,email]=useState(JSON.parse(localStorage.getItem("teacherData")));
+
+
+  console.log(name,email);
   return (
     <div className="">
       <div

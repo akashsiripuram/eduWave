@@ -17,6 +17,7 @@ import Spinner from "./components/Loaders/Spinner";
 import ProtectedTeacherRoute from "./components/Auth/ProtectedTeacherRoute";
 import TeacherDashboard from "./pages/DashboardPage/Teacher/TeacherDashboard";
 import AddStudent from "./pages/DashboardPage/Teacher/AddStudent";
+import ChatSideBar from "./modules/Dashboard";
 // import Stars from "./components/Stars/Stars";
 
 function App() {
@@ -88,7 +89,7 @@ function App() {
               <PreviewQuiz />
             </ProtectedTeacherRoute>
           }
-        />
+        /> 
         <Route
           path="/dashboard/teacher/canvas"
           element={
@@ -107,6 +108,7 @@ function App() {
         <Route path="/add-quiz" element={<GenerateQuiz />} />
         {/* <Route path="/preview/:quizTitle" element={<PreviewQuiz />} /> */}
         <Route path="/dashboard/teacher" element={<TeacherDashboard />} />
+        <Route path="/dashboard/teacher/inbox/:userId" element={<ChatSideBar/>}></Route>
       </Routes>
       {/* <Stars /> */}
     </>
