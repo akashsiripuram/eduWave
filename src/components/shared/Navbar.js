@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SetTeacher } from "../../redux/teachers.js";
 import { SetStudent } from "../../redux/students.js";
+// import { useSelector } from "react-redux";
 export default function Navbar() {
   // const navigate = useNavigate();
   // const dispatch = useDispatch();
+  const { teacher } = useSelector((state) => state.teacher);
   // const { teacher } = useSelector((state) => state.teacher);
   // const { student } = useSelector((state) => state.student);
   return (
@@ -14,6 +16,12 @@ export default function Navbar() {
         <Link to="/">
           <div className="flex items-center text-white">
             <p>EduWave</p>
+          </div>
+        </Link>
+
+        <Link to="/chat">
+          <div className="flex items-center text-white">
+            <p>Chat</p>
           </div>
         </Link>
 

@@ -5,6 +5,9 @@ module.exports = {
     "node_modules/flowbite-react/lib/esm/**/*.js",
   ],
   theme: {
+    // colors:{
+    //   primary:"#808080"
+    // },
     extend: {},
   },
   plugins: [],

@@ -48,7 +48,7 @@ const loginTeacher = async (req, res) => {
         success: false,
       });
     }
-    if (teacher.isApproved === false) {
+    if (teacher.isApproved === false) {//newly added
       return res.status(200).send({
         message: "Your account is not approved yet",
         success: false,

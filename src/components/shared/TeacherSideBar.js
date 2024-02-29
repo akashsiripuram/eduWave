@@ -13,9 +13,14 @@ import { Tooltip as ReactToolTip } from "react-tooltip";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 const TeacherSideBar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { teacher } = useSelector((state) => state.teacher);
+  const userId=teacher._id;
+  console.log(teacher);
+  
   const Menus = [
     {
       title: "Dashboard",
@@ -25,7 +30,7 @@ const TeacherSideBar = () => {
     {
       title: "Inbox",
       src: <ChatBubbleBottomCenterIcon className="h-6 w-6 text-green-400" />,
-      url: "/dashboard/teacher/inbox",
+      url: `/dashboard/teacher/inbox/${userId}`,
     },
     {
       title: "Students",
@@ -59,7 +64,7 @@ const TeacherSideBar = () => {
       url: "/dashboard/teacher/leaderboard",
     },
   ];
-  const { teacher } = useSelector((state) => state.teacher);
+  // const { teacher } = useSelector((state) => state.teacher);
   return (
     <div className="">
       <div

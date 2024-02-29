@@ -24,6 +24,7 @@ import StudentLogin from "./pages/AuthPage/Student/StudentLogin";
 import StudentDashboard from "./pages/DashboardPage/Student/StudentDashboard";
 import QuizPageStudent from "./pages/DashboardPage/Student/QuizPageStudent";
 import QuizStudent from "./pages/DashboardPage/Student/QuizPageStudent/QuizStudent";
+import ChatSideBar from "./modules/Dashboard";
 // import Stars from "./components/Stars/Stars";
 
 function App() {
@@ -145,6 +146,9 @@ function App() {
         {/* <Route path="/dashboard/teacher" element={<TeacherDashboard />} /> */}
         {/* <Route path="/quiz" element={<QuizPageTeacher />} /> */}
         <Route path="/leaderboard" element={<LeaderBoardPage />} />
+        <Route path="/dashboard/teacher/inbox/:userId" element={<ProtectedTeacherRoute>
+          <ChatSideBar />
+        </ProtectedTeacherRoute>}></Route>
       </Routes>
       {/* <Stars /> */}
     </>
